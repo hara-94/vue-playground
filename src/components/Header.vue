@@ -17,11 +17,15 @@ export default class ComponentHeader extends Vue { }
 <style lang="scss" scoped>
 .header {
   &__list {
+    width: 100%;
     display: flex;
+    justify-content: center;
   }
 
   &__item {
-    
+    padding: 4px 10px;
+    font-size: 0.9rem;
+    line-height: 1;
   }
 }
 </style>
