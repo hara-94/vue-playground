@@ -2,21 +2,26 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Router, { RouteConfig } from "vue-router";
 
-import Home from "../Home.vue";
+import Index from "../pages/index.vue";
+import Csv from "../pages/csv/index.vue";
 
 Vue.use(Router);
 
 const routes: RouteConfig[] = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "index",
+    component: Index
+  },
+  {
+    path: "/csv",
+    name: "csv",
+    component: Csv
   }
 ]
 
 const router = new VueRouter({
   mode: "history",
-  base: process.env.BASE_URL,
   routes
 })
 
