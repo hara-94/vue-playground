@@ -1,0 +1,20 @@
+{
+  "name": "sample_name",
+  "type": "sample",
+  "ary": [
+    {
+      "num": 1
+    },
+    {
+      "num": 2,
+      "isEven": true 
+    },
+    {
+      "num": 3
+    },
+    {
+      "num": 4,
+      "isEven": true
+    }
+  ]
+}

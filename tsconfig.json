@@ -14,8 +14,10 @@
     "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "resolveJsonModule": true,
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "./typings"
     ],
     "paths": {
       "@/*": [
