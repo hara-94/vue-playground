@@ -4,6 +4,7 @@ import Router, { RouteConfig } from "vue-router";
 
 import Index from "../pages/index.vue";
 import Csv from "../pages/csv/index.vue";
+import CalcVh from "../pages/calc-vh/index.vue";
 
 Vue.use(Router);
 
@@ -17,6 +18,11 @@ const routes: RouteConfig[] = [
     path: "/csv",
     name: "csv",
     component: Csv
+  },
+  {
+    path: "/calc-vh",
+    name: "calc-vh",
+    component: CalcVh
   }
 ]
 

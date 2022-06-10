@@ -7,6 +7,9 @@
       <li class="header__item">
         <router-link to="/csv">CSV</router-link>
       </li>
+      <li class="header__item">
+        <router-link to="/calc-vh">/calc-vh</router-link>
+      </li>
     </ul>
   </div>
 </template>
@@ -18,6 +21,13 @@ export default class ComponentHeader extends Vue { }
 </script>
 <style lang="scss" scoped>
 .header {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aquamarine;
+
   &__list {
     width: 100%;
     display: flex;
