@@ -1,9 +1,11 @@
 <template>
-  <div class="">
+  <div class="vue">
     <nav>
       <component-header></component-header>
-    </nav>    
-    <router-view></router-view>
+    </nav>
+    <div class="container">
+      <router-view></router-view>
+    </div>
   </div> 
 </template>
 <script lang="ts">
@@ -19,4 +21,8 @@ export default class App extends Vue {}
 </script>
 <style lang="scss">
 @import "./asset/css/reset.css";
+.container {
+  max-width: 810px;
+  margin: 0 auto;
+}
 </style>

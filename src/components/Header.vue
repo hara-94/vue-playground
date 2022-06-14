@@ -10,6 +10,9 @@
       <li class="header__item">
         <router-link to="/calc-vh">/calc-vh</router-link>
       </li>
+      <li class="header__item">
+        <router-link to="/life-cycle">/life-cycle</router-link>
+      </li>
     </ul>
   </div>
 </template>
