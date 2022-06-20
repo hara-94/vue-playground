@@ -11,6 +11,12 @@
       <button class="agora-top__button" @click="onClickToggleCamera">ToggleCamera</button>
       <button class="agora-top__button" @click="onClickToggleAudio">ToggleAudio</button>
     </div>
+    <div class="agora-top__buttons agora-top__buttons--rtm">
+      <button class="agora-top__button" @click="onClickLoginRTM">LoginRTM</button>
+      <button class="agora-top__button" @click="onClickJoinRTM">JoinRTM</button>
+      <button class="agora-top__button" @click="onClickExitRTM">ExitRTM</button>
+      <button class="agora-top__button" @click="onClickSendMessage">Send Message</button>
+    </div>
   </div>  
 </template>
 <script lang="ts" src="./top.ts"></script>
@@ -35,6 +41,10 @@
   &__buttons {
     display: flex;
     flex-wrap: wrap;
+
+    &--rtm {
+      margin-top: 16px;
+    }
   }
 
   &__button {

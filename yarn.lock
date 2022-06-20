@@ -790,6 +790,11 @@ agora-rtc-sdk@^3.6.10:
   resolved "https://registry.yarnpkg.com/agora-rtc-sdk/-/agora-rtc-sdk-3.6.10.tgz#1ef2e3a2123f0cc349d8978a21205fa720054151"
   integrity sha512-F9BIrQtEbuKAqyo72JHoC3TYnN+oyth1Zj7TOM3lFCbdl4Q4M6AG5II2Ln4thIkrYwFT/GAtrT29LAkKG+Xi/g==
 
+agora-rtm-sdk@^1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/agora-rtm-sdk/-/agora-rtm-sdk-1.4.5.tgz#a7d9d55b0821bc6858d23ff837319f4d7d2c8a99"
+  integrity sha512-uVRxKmQpbWyIk7Z+5hCREhgY95LJDYl67vLZu9cklb7p8ja9dqvzVHeS62nnYtM1oJCQPdtaMTW/cbU1qdxU7g==
+
 ajv-formats@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ajv-formats/-/ajv-formats-2.1.1.tgz#6e669400659eb74973bbf2e33327180a0996b520"

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "agora-rtc-sdk": "^3.6.10",
+    "agora-rtm-sdk": "^1.4.5",
     "sass": "^1.52.1",
     "sass-loader": "^13.0.0",
     "vue": "^2.6.14",
