@@ -3,8 +3,13 @@
     <div class="agora-top__heading">Agora</div>
     <div class="agora-top__me" id="me"></div>
     <div class="agora-top__buttons">
-      <button class="agora-top__button agora-top__button--start" @click="onClickLive">Start</button>
+      <button class="agora-top__button agora-top__button--join" @click="onClickJoinAsHost">Join</button>
+      <button class="agora-top__button" @click="onClickPlay">Play</button>
+      <button class="agora-top__button" @click="onClickPublish">Publish</button>
+      <button class="agora-top__button" @click="onClickUnpublish">Unpublish</button>
       <button class="agora-top__button agora-top__button--finish" @click="onClickLeave">Leave</button>
+      <button class="agora-top__button" @click="onClickToggleCamera">ToggleCamera</button>
+      <button class="agora-top__button" @click="onClickToggleAudio">ToggleAudio</button>
     </div>
   </div>  
 </template>
@@ -29,15 +34,16 @@
 
   &__buttons {
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
   }
 
   &__button {
-    width: 100px;
+    width: 200px;
     height: 30px;
     text-align: center;
+    border: 2px dashed lightgray;
 
-    &--start {
+    &--join {
       border: 2px solid greenyellow;
       color: greenyellow;
     }

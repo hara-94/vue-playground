@@ -4,7 +4,7 @@ import AgoraRTC from "agora-rtc-sdk";
 @Component({})
 export default class TemplateAgoraTop extends Vue {
   private appId = "d44c5a0166b34b8282e8808316bec0ef";
-  private tempToken = "006d44c5a0166b34b8282e8808316bec0efIAAyy2vxU75B851kVH24IvmqEleJH1yqcjF8snJkd4ZhOE29K2wAAAAAEAC5bVGz6+SqYgEAAQDp5Kpi"
+  private tempToken = "006d44c5a0166b34b8282e8808316bec0efIABpGhxGk8uafjkxMOelLusiKlRXw93Eov+8EWDlZ7iBt029K2wAAAAAEACXhJCZ1EqxYgEAAQDUSrFi"
   private client = AgoraRTC.createClient({
     mode: "live",
     codec: "vp8"
@@ -14,61 +14,72 @@ export default class TemplateAgoraTop extends Vue {
     video: true
   });
 
-  private async onClickLive() {
-    this.initClient().then(() => {
+  private isVideoMute: boolean = false;
+  private isAudioMute: boolean = false;
+
+  private onClickJoinAsHost() {
+    this.client.init(this.appId, (() => {
       this.setClientRole();
-      return this.joinChannel();
-    }).then(() => {
-      this.initLocalStream();
+    }));
+    this.client.join(this.tempToken, "sample-live", null, undefined, (uid: number) => {
+      console.log("join success");
     });
   }
 
   private onClickLeave() {
-    console.log("onClickLeave")
-    this.client.leave();
+    console.log("leave")
+    this.client.leave((() => {
+      console.log("leave success");
+    }));
+  }
+
+  private onClickPlay() {
+    console.log("play")
+    this.localStream.init(() => {
+      console.log("stream init success");
+      this.localStream.play("me")
+    }, (err: any) => {
+      this.handleError("play", "error");
+    })
+  }
+
+  private onClickPublish() {
+    console.log("publish")
+    this.client.publish(this.localStream, (err: string) => {
+      this.handleError("publish", err);
+    });
+  }
+
+  private onClickUnpublish() {
+    console.log("unpublish")
+    this.client.unpublish(this.localStream, (err: string) => {
+      this.handleError("unpublish", err);
+    });
+  }
+
+  private onClickToggleCamera() {
+    if (this.isVideoMute) {
+      this.localStream.unmuteVideo();
+    } else {
+      this.localStream.muteVideo();
+    }
+    this.isVideoMute = !this.isVideoMute;    
+  }
+
+  private onClickToggleAudio() {
+    if (this.isAudioMute) {
+      this.localStream.unmuteAudio();
+    } else {
+      this.localStream.muteAudio();
+    }
+    this.isAudioMute = !this.isAudioMute;
+  }
+
+  private setClientRole() {
+    this.client.setClientRole("host");
   }
 
   private handleError = (domain: string, err: any) => {
     console.log(domain + ", error: " + err);
-  }
-
-  private async initClient() {
-    console.log("initClient")
-    return new Promise((resolve) => {
-      this.client.init(this.appId, () => {
-        resolve("");
-      }, (err: string) => {
-        this.handleError("initClient", err);
-      });
-    });
-  }
-
-  private setClientRole() {
-    console.log("setClientRole")
-    this.client.setClientRole("host");
-  }
-
-  private async joinChannel() {
-    console.log("joinChannel")
-    return new Promise((resolve) => {
-      this.client.join(this.tempToken, "sample-live", null, undefined, (uid: number) => {
-        resolve("");
-      }, (err: string) => {
-        this.handleError("joinChannel", err);
-      });
-    });
-  }
-
-  private async initLocalStream() {
-    console.log("initLocalStream")
-    return new Promise((resolve) => {
-      this.localStream.init(() => {
-        this.localStream.play("me");
-        this.client.publish(this.localStream, (err: string) => {
-          this.handleError("publish", err);
-        });
-        resolve("");
-      });
-    })
   }
 }
