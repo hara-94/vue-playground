@@ -35,7 +35,7 @@ export default class TemplateAgoraTop extends Vue {
     this.client.init(this.appId, (() => {
       this.setClientRole();
     }));
-    this.client.join(this.tempToken, "sample-live", null, undefined, (uid: number) => {
+    this.client.join(null, "sample-live", null, undefined, (uid: number) => {
       console.log("join success");
     });
   }

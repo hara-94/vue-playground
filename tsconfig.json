@@ -16,8 +16,7 @@
     "baseUrl": ".",
     "resolveJsonModule": true,
     "types": [
-      "webpack-env",
-      "./typings"
+      "webpack-env"
     ],
     "paths": {
       "@/*": [

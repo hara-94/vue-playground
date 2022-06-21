@@ -1,6 +1,9 @@
 <template>
   <div class="agora-top">
-    <div class="agora-top__heading">Agora</div>
+    <div class="agora-top__heading">
+      Agora
+      <router-link class="agora-top__heading__link" to="agora/audience">> Audience</router-link>
+    </div>
     <div class="agora-top__me" id="me"></div>
     <div class="agora-top__buttons">
       <button class="agora-top__button agora-top__button--join" @click="onClickJoinAsHost">Join</button>
@@ -28,8 +31,17 @@
   align-items: center;
 
   &__heading {
+    width: 500px;
     font-size: 28px;
     font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    &__link {
+      cursor: pointer;
+      font-size: 12px;
+    }
   }
 
   &__me {
