@@ -1,5 +1,5 @@
 import { Component, Vue } from "vue-property-decorator";
-import AgoraRTC from "agora-rtc-sdk";
+import AgoraRTC from "agora-rtc-sdk-ng";
 
 @Component({})
 export default class TemplateAgoraAudience extends Vue {
@@ -9,41 +9,25 @@ export default class TemplateAgoraAudience extends Vue {
     codec: "vp8"
   });
 
-
-
   mounted() {
-    this.client.init(this.appId, () => {
-      console.log("client init success");
-    });
-
+    
   }
 
   private onClickHandleEvent() {
-    this.client.on("liveStreamingStarted", (evt: { type: "liveStreamingStarted", url: string}) => {
-      console.log("liveStreamingStarted");
-      console.log("url: " + evt.url);
-    });
-
-    this.client.on("liveStreamingStopped", (evt: { type: "liveStreamingStopped", url: string }) => {
-      console.log("liveStreamingStopped");
-      console.log("url: " + evt.url);
-    });
-
-    this.client.on("stream-added", (evt: any) => {
-      console.log("stream-added");
-    })
-
-    this.client.on("stream-subscribed", (evt: any) => {
-      console.log("stream-subscribed");
-    })
+    
   }
 
   private onClickJoinAsAudience() {
-    this.client.join(null, "sample-live", null, undefined, (uid: number) => {
-      console.log("join success")
-      this.client.setClientRole("audience");
-    }, (err: string) => {
-      console.log("join failed: " + err);
-    })
+    
+  }
+
+  private addVideoBlock(id: string) {
+    console.log("addVideBlock")
+    const block = document.createElement("div");
+    block.id = id;
+    block.style.transform = "rotateY(180deg)";
+    block.style.width = "100%";
+    block.style.height = "100%";
+    document.getElementById("container")?.appendChild(block);
   }
 }

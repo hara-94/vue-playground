@@ -1,5 +1,5 @@
 import { Vue, Component } from "vue-property-decorator";
-import AgoraRTC from "agora-rtc-sdk";
+import AgoraRTC, { ICameraVideoTrack, IMicrophoneAudioTrack } from "agora-rtc-sdk-ng";
 import AgoraRTM, { RtmMessage } from "agora-rtm-sdk";
 
 @Component({})
@@ -10,10 +10,8 @@ export default class TemplateAgoraTop extends Vue {
     mode: "live",
     codec: "vp8"
   });
-  private localStream = AgoraRTC.createStream({
-    audio: true,
-    video: true
-  });
+  private cameraTrack = AgoraRTC.createCameraVideoTrack();
+  private audioTrack = AgoraRTC.createMicrophoneAudioTrack();
   private rtmClient = AgoraRTM.createInstance(this.appId);
 
   private isVideoMute: boolean = false;
@@ -32,65 +30,57 @@ export default class TemplateAgoraTop extends Vue {
   }
 
   private onClickJoinAsHost() {
-    this.client.init(this.appId, (() => {
-      this.setClientRole();
-    }));
-    this.client.join(null, "sample-live", null, undefined, (uid: number) => {
+    this.client.setClientRole("host");
+    this.client.join(this.appId, "sample-live", null, null).then((value: any) => {
       console.log("join success");
     });
   }
 
   private onClickLeave() {
     console.log("leave")
-    this.client.leave((() => {
-      console.log("leave success");
-    }));
+    this.client.leave().then(() => {
+      console.log("leave success")
+    });
   }
 
   private onClickPlay() {
     console.log("play")
-    this.localStream.init(() => {
-      console.log("stream init success");
-      this.localStream.play("me")
-    }, (err: any) => {
-      this.handleError("play", "error");
+    this.cameraTrack.then((track: ICameraVideoTrack) => {
+      track.play("me")
     })
   }
 
   private onClickPublish() {
     console.log("publish")
-    this.client.publish(this.localStream, (err: string) => {
-      this.handleError("publish", err);
-    });
+    this.cameraTrack.then((track: ICameraVideoTrack) => {
+      return this.client.publish(track);
+    }).then(() => {
+      console.log("publish success");
+    })
   }
 
   private onClickUnpublish() {
     console.log("unpublish")
-    this.client.unpublish(this.localStream, (err: string) => {
-      this.handleError("unpublish", err);
-    });
+    this.cameraTrack.then((track: ICameraVideoTrack) => {
+      return this.client.unpublish(track);
+    }).then(() => {
+      console.log("unpublish success");
+    })
+    
   }
 
   private onClickToggleCamera() {
-    if (this.isVideoMute) {
-      this.localStream.unmuteVideo();
-    } else {
-      this.localStream.muteVideo();
-    }
-    this.isVideoMute = !this.isVideoMute;    
+    this.cameraTrack.then((track: ICameraVideoTrack) => {
+      track.setMuted(!this.isVideoMute);
+      this.isVideoMute = !this.isVideoMute;  
+    });  
   }
 
   private onClickToggleAudio() {
-    if (this.isAudioMute) {
-      this.localStream.unmuteAudio();
-    } else {
-      this.localStream.muteAudio();
-    }
-    this.isAudioMute = !this.isAudioMute;
-  }
-
-  private setClientRole() {
-    this.client.setClientRole("host");
+    this.audioTrack.then((track: IMicrophoneAudioTrack) => {
+      track.setMuted(!this.isAudioMute);
+      this.isAudioMute = !this.isAudioMute;
+    });
   }
 
   private handleError = (domain: string, err: any) => {

@@ -1,6 +1,8 @@
 <template>
   <div class="audience-top">
-    <video class="audience-top__video" src="" id="live"></video>
+    <div class="audience-top__video-container" id="container">
+
+    </div>
     <div class="audience-top__buttons">
       <button class="audience-top__buttons__button" @click="onClickHandleEvent">Handle Event</button>
       <button class="audience-top__buttons__button" @click="onClickJoinAsAudience">Join as Audience</button>
@@ -12,7 +14,7 @@
 .audience-top {
   width: 100%;
 
-  &__video {
+  &__video-container {
     display: block;
     width: 70%;
     height: 400px;
