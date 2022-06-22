@@ -1,5 +1,5 @@
 import { Component, Vue } from "vue-property-decorator";
-import AgoraRTC from "agora-rtc-sdk-ng";
+import AgoraRTC, { IAgoraRTCRemoteUser, IRemoteVideoTrack } from "agora-rtc-sdk-ng";
 
 @Component({})
 export default class TemplateAgoraAudience extends Vue {
@@ -14,11 +14,22 @@ export default class TemplateAgoraAudience extends Vue {
   }
 
   private onClickHandleEvent() {
-    
+    this.client.on("user-published", (user: IAgoraRTCRemoteUser, mediaType: "audio" | "video") => {
+      console.log("user-published, mediaType=" + mediaType);
+      console.log(user.videoTrack);
+      if (mediaType === "video") {
+        this.client.subscribe(user, mediaType).then((track: IRemoteVideoTrack) => {
+          track.play("remote-stream")
+        });
+      }
+    });
   }
 
   private onClickJoinAsAudience() {
-    
+    this.client.setClientRole("audience");
+    this.client.join(this.appId, "sample-live", null, null).then(() => {
+      console.log("join success");
+    });
   }
 
   private addVideoBlock(id: string) {

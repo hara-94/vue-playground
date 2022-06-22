@@ -1,7 +1,7 @@
 <template>
   <div class="audience-top">
     <div class="audience-top__video-container" id="container">
-
+      <div class="audience-top__video-container__video" id="remote-stream"></div>
     </div>
     <div class="audience-top__buttons">
       <button class="audience-top__buttons__button" @click="onClickHandleEvent">Handle Event</button>
@@ -19,7 +19,12 @@
     width: 70%;
     height: 400px;
     margin: 0 auto;
-    border: 2px solid lightgray
+    border: 2px solid lightgray;
+
+    &__video {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__buttons {
