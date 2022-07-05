@@ -6,6 +6,8 @@ import Index from "../pages/index.vue";
 import Csv from "../pages/csv/index.vue";
 import CalcVh from "../pages/calc-vh/index.vue";
 import LifeCycle from "../pages/life-cycle/index.vue";
+import Agora from "../pages/agora/index.vue";
+import AgoraAudience from "../pages/agora/audience/audience.vue";
 
 Vue.use(Router);
 
@@ -29,6 +31,16 @@ const routes: RouteConfig[] = [
     path: "/life-cycle",
     name: "life-cycle",
     component: LifeCycle
+  },
+  {
+    path: "/agora",
+    name: "agora",
+    component: Agora
+  },
+  {
+    path: "/agora/audience",
+    name: "agora-audience",
+    component: AgoraAudience
   }
 ]
 
