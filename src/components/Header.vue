@@ -16,6 +16,9 @@
       <li class="header__item">
         <router-link to="/agora">/agora</router-link>
       </li>
+      <li class="header__item">
+        <router-link to="/dayjs">/dayjs</router-link>
+      </li>
     </ul>
   </div>
 </template>

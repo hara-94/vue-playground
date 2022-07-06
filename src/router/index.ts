@@ -8,6 +8,7 @@ import CalcVh from "../pages/calc-vh/index.vue";
 import LifeCycle from "../pages/life-cycle/index.vue";
 import Agora from "../pages/agora/index.vue";
 import AgoraAudience from "../pages/agora/audience/audience.vue";
+import Dayjs from "../pages/dayjs/index.vue";
 
 Vue.use(Router);
 
@@ -41,6 +42,11 @@ const routes: RouteConfig[] = [
     path: "/agora/audience",
     name: "agora-audience",
     component: AgoraAudience
+  },
+  {
+    path: "/dayjs",
+    name: "dayjs",
+    component: Dayjs
   }
 ]
 
