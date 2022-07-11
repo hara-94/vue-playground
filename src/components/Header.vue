@@ -16,6 +16,9 @@
       <li class="header__item">
         <router-link to="/agora">/agora</router-link>
       </li>
+      <li class="header__item">
+        <router-link to="/input">/input</router-link>
+      </li>
     </ul>
   </div>
 </template>

@@ -1,6 +1,6 @@
 import SampleJson from "../../../asset/json/sample.json";
 
-import { Vue, Component } from "vue-property-decorator";
+import { Vue, Component, Emit } from "vue-property-decorator";
 
 class TemplateSampleJson {
   name: string;
